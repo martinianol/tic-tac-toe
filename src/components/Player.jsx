@@ -1,10 +1,13 @@
 import { useState } from "react";
 
-const Player = ({ initialName, symbol, isActive }) => {
+const Player = ({ initialName, symbol, isActive, onChangeName }) => {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditMode, setEditMode] = useState(false);
 
-  const toggleEditMode = () => setEditMode((prevState) => !prevState);
+  const toggleEditMode = () =>{
+    if(isEditMode) onChangeName(symbol, playerName)
+     setEditMode((prevState) => !prevState)
+    };
 
   const handleChange = (event) => {
     setPlayerName(event.target.value);
